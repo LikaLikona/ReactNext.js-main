@@ -1,4 +1,34 @@
+'use client'
 import Image from 'next/image'
+import React, { useState } from "react";
+import { auth, db } from '../firebaseConfig';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from 'next/router';
+
+
+const Login = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(userCredentials._tokenResponse.expiresIn);
+      sessionStorage.setItem("token", userCredentials.user.accessToken);
+      router.push('/dashboard')
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}
+
 
 export default function Signin() {
   return (
