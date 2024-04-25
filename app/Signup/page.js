@@ -17,7 +17,7 @@ export default function Signup() {
         {/* Logo */}
         <div className="absolute top-4 left-4">
           <Image
-            src=" " 
+            src="/images/sun.png"
             alt="Logo" 
             width={100} 
             height={100} 
