@@ -1,4 +1,4 @@
-// FiveDaysGraph.js
+
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import moment from "moment";
@@ -9,7 +9,7 @@ const FiveDaysGraph = ({ forecastData }) => {
 
   useEffect(() => {
     const createChart = () => {
-      // Extract unique dates and average temperatures for the chart
+      
       const uniqueData = forecastData.reduce(
         (acc, forecastDay) => {
           const date = moment.unix(forecastDay.dt).format("MMMM D");
@@ -24,7 +24,7 @@ const FiveDaysGraph = ({ forecastData }) => {
         { dates: [], avgTemps: [] }
       );
 
-      // Chart configuration
+      
       const chartConfig = {
         type: "line",
         data: {
@@ -41,12 +41,12 @@ const FiveDaysGraph = ({ forecastData }) => {
         },
       };
 
-      // Destroy existing chart if it exists
+      
       if (chartInstance.current) {
         chartInstance.current.destroy();
       }
 
-      // Create the chart
+      
       const ctx = chartRef.current.getContext("2d");
       chartInstance.current = new Chart(ctx, chartConfig);
     };

@@ -1,4 +1,4 @@
-// HourlyWeather.js
+
 import React, { useEffect, useRef } from "react";
 import moment from "moment";
 import Chart from "chart.js/auto";
@@ -9,7 +9,7 @@ const HourlyWeather = ({ hourlyTemperatureData }) => {
 
   useEffect(() => {
     const createChart = () => {
-      // Extract unique times and temperatures for the chart
+      
       const uniqueData = hourlyTemperatureData.reduce(
         (acc, entry) => {
           const time = moment.unix(entry.time).format("H A");
@@ -22,7 +22,7 @@ const HourlyWeather = ({ hourlyTemperatureData }) => {
         { times: [], temperatures: [] }
       );
 
-      // Chart configuration
+      
       const chartConfig = {
         type: "line",
         data: {
@@ -39,12 +39,12 @@ const HourlyWeather = ({ hourlyTemperatureData }) => {
         },
       };
 
-      // Destroy existing chart if it exists
+     
       if (chartInstance.current) {
         chartInstance.current.destroy();
       }
 
-      // Create the chart
+     
       const ctx = chartRef.current.getContext("2d");
       chartInstance.current = new Chart(ctx, chartConfig);
     };

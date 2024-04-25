@@ -1,4 +1,4 @@
-// RainInfo.js
+
 import React from "react";
 import { FaCloudShowersHeavy } from "react-icons/fa";
 

@@ -1,4 +1,4 @@
-// PressureInfo.js
+
 import React from "react";
 import { FaTachometerAlt } from "react-icons/fa";
 

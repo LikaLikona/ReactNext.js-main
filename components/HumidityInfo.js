@@ -1,4 +1,4 @@
-// HumidityInfo.js
+
 import React from "react";
 
 const HumidityInfo = ({ humidity }) => {

@@ -13,7 +13,7 @@ const Weather = ({ currentWeather }) => {
     return moment.unix(timestamp).format("MMMM D, ddd HH:mm");
   };
 
-  // Function to determine the weather icon based on the weather description
+  
   const getWeatherIcon = (weatherDescription) => {
     switch (weatherDescription.toLowerCase()) {
       case "clear sky":
@@ -58,7 +58,7 @@ const Weather = ({ currentWeather }) => {
         {currentWeather.main.temp}Â°C
       </p>
 
-      {/* Weather Information Section */}
+
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">
           {getWeatherIcon(currentWeather.weather[0].description)}

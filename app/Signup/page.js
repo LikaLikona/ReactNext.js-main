@@ -3,16 +3,16 @@ import Image from 'next/image'
 import {db} from '../firebaseConfig'
 import { collection, addDoc } from 'firebase/firestore'
 import React, { useState } from "react";
-import { useRouter } from 'next/router';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 
-async function addDatatoFirestore(firstName, lastName, email, password, dateofbirth) {
+async function addDatatoFirestore(firstName, lastName, email, password, ) {
   try {
-    const docRef = await addDoc(collection(db, "dateofbirth"), {
+    const docRef = await addDoc(collection(db, "ID"), {
       firstName: firstName,
       lastName: lastName,
       email: email,
       password: password,
-      dateofbirth: dateofbirth,
+      
     });
     console.log("Document written with ID: ", docRef.id);
     return true;
@@ -29,21 +29,19 @@ export default function Signup() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState ("");
-    const [dateofbirth, setDateofbirth] = useState ("");
+
 
     const handleToggle = () => {
-        // Use the functional update form to toggle the isChecked state
         setIsChecked(prevState => !prevState);
     };
     const handleSubmit = async(e) => {
       e.preventDefault();
-      const added = await addDatatoFirestore(firstName, lastName, email, password, dateofbirth);
+      const added = await addDatatoFirestore(firstName, lastName, email, password, );
       if (added) {
         setName("");
         setLastName("");
         setEmail("");
         setPassword("");
-        setDateofbirth("");
 
         alert("You are signed up!")
         window.location.href = "/";
@@ -53,9 +51,9 @@ export default function Signup() {
     }
   return (
     <main className="flex flex-col md:flex-row min-h-screen">
-      {/* Left Section */}
+     
       <section className="flex-1 flex flex-col items-center justify-center">
-        {/* Logo */}
+      
         <div className="absolute top-4 left-4">
           <Image
             src="/images/sun.png"
@@ -70,7 +68,7 @@ export default function Signup() {
         </h1>
       </section>
 
-      {/* Right Section */}
+    
       <section className="flex-1 flex items-center justify-center md:item-start overflow-y-auto p-20">
         <div className="p-6 md:p-12 rounded-lg shadow-xl w-full max-w-lg bg-white ">
           
@@ -151,42 +149,6 @@ export default function Signup() {
                       className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="confirmPassword" className="block text-sm font-medium leading-6 text-gray-900">
-                    Confirm Password
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      type="password"
-                      autoComplete="new-password"
-                      required
-                      className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      // value={password}
-                      // onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="dateofbirth" className="block text-sm font-medium leading-6 text-gray-900">
-                    Date of Birth
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="dateofbirth"
-                      name="dateofbirth"
-                      type="date"
-                      autoComplete="bday"
-                      required
-                      className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      value={dateofbirth}
-                      onChange={(e) => setDateofbirth(e.target.value)}
                     />
                   </div>
                 </div>

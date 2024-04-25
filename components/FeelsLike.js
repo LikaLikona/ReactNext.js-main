@@ -1,11 +1,11 @@
-// FeelsLike.js
+
 import React from "react";
 
 const FeelsLike = ({ actualTemperature, feelsLikeTemperature }) => {
-  // Calculate the temperature difference
+ 
   const temperatureDifference = feelsLikeTemperature - actualTemperature;
 
-  // Determine the description based on the temperature difference
+
   let description = "";
   if (temperatureDifference < 0) {
     description = "Feels colder than the actual temperature.";

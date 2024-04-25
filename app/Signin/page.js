@@ -3,10 +3,10 @@ import Image from 'next/image'
 import React, { useState } from "react";
 import { auth, db } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useRouter } from 'next/router';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 
 
-const Login = () => {
+const SignIn = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,27 +15,21 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const userCredentials = await signInWithEmailAndPassword(
-        auth,
+      await auth.signInWithEmailAndPassword(
         email,
         password
       );
-      console.log(userCredentials._tokenResponse.expiresIn);
-      sessionStorage.setItem("token", userCredentials.user.accessToken);
+      // window.location.href = "/dashboard"
       router.push('/dashboard')
     } catch (error) {
       console.error(error);
     }
   };
-}
-
-
-export default function Signin() {
   return (
     <main className="flex flex-col md:flex-row min-h-screen">
-      {/* Left Section */}
+     
       <section className="flex-1 flex items-center justify-center ">
-        {/* Logo */}
+        
         <div className="absolute top-4 left-4">
           <Image
             src="/images/sun.png" 
@@ -50,7 +44,7 @@ export default function Signin() {
         </h1>
       </section>
 
-      {/* Right Section */}
+     
       <section className="flex-1 flex items-center justify-center md:item-start">
         <div className="p-6 md:p-12 rounded-lg shadow-xl w-full max-w-lg bg-white ">
           
@@ -146,5 +140,6 @@ export default function Signin() {
         </div>
       </section>
     </main>
-  )
+  );
 }
+  export default SignIn;
