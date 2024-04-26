@@ -31,7 +31,7 @@ const FiveDaysGraph = ({ forecastData }) => {
           labels: uniqueData.dates,
           datasets: [
             {
-              label: "Average Temperature (Â°C)",
+              label: "Average Temperature (°C)",
               data: uniqueData.avgTemps,
               fill: false,
               borderColor: "rgb(75, 192, 192)",

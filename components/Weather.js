@@ -56,7 +56,7 @@ const Weather = ({ currentWeather }) => {
       </div>
 
       <p className="text-5xl mb-4 mt-4 font-bold">
-        {currentWeather.main.temp}Â°C
+        {currentWeather.main.temp}°C
       </p>
 
 
