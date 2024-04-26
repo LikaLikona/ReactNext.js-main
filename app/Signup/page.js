@@ -2,6 +2,7 @@
 import Image from 'next/image'
 
 import React, { useState } from "react";
+import firebase from "firebase/app"
 import { auth, db } from "../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
