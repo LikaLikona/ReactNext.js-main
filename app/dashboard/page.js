@@ -13,7 +13,7 @@ import PressureInfo from "../components/PressureInfo";
 import RainInfo from "../components/RainInfo";
 
 
-export default function Home() {
+export default function Dashboard() {
   const [city, setCity] = useState("");
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecastData, setForecastData] = useState(null);

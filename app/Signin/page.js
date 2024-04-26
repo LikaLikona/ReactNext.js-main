@@ -20,7 +20,7 @@ const SignIn = () => {
         password
       );
       // window.location.href = "/dashboard"
-      router.push('/home')
+      router.push('/dashboard')
     } catch (error) {
       console.error(error);
     }
@@ -142,4 +142,4 @@ const SignIn = () => {
     </main>
   );
 }
-  export default SignIn;
+export default SignIn;

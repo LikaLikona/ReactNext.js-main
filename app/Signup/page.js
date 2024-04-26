@@ -1,54 +1,61 @@
 'use client'
 import Image from 'next/image'
-import {db} from '../firebaseConfig'
-import { collection, addDoc } from 'firebase/firestore'
+
 import React, { useState } from "react";
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { auth, db } from "../firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 
-async function addDatatoFirestore(firstName, lastName, email, password, ) {
-  try {
-    const docRef = await addDoc(collection(db, "ID"), {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-      
-    });
-    console.log("Document written with ID: ", docRef.id);
-    return true;
-  } catch(error) {
-    console.error("Error adding document", error)
-    return false;
-  }
-}
+const SignUp = () => {
+  const router = useRouter();
+  const [isChecked, setIsChecked] = useState(false);
+  const [firstName, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  const handleSignUp = async (e) => {
+    e.preventDefault();
 
-export default function Signup() {
-    const [isChecked, setIsChecked] = useState(false);
-    const [firstName, setName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState ("");
-
-
-    const handleToggle = () => {
-        setIsChecked(prevState => !prevState);
-    };
-    const handleSubmit = async(e) => {
-      e.preventDefault();
-      const added = await addDatatoFirestore(firstName, lastName, email, password, );
-      if (added) {
-        setName("");
-        setLastName("");
-        setEmail("");
-        setPassword("");
-
-        alert("You are signed up!")
-        window.location.href = "/";
-
-      }
-
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const id = userCredentials.user.uid;
+      await setDoc(doc(db, "user" ), {
+        email,
+        firstName,
+        lastName,
+      }); 
+      alert("You are signed up!")
+      router.push("/");
+      // window.location.href = "/";
+    } 
+    catch (error) {
+      console.error("Error signing up:", error);
     }
+    
+  };
+
+  const handleToggle = () => {
+    setIsChecked(prevState => !prevState);
+};
+
+
+  //   try {
+  //     await firebase.auth().createUserWithEmailAndPassword(email, password);
+  //     console.log("User created successfully!");
+  //     alert("You are signed up!")
+  //     window.location.href = "/";
+
+  //   } catch (error) {
+  //     console.error("Error signing up:", error);
+  //   }
+  // };
+
   return (
     <main className="flex flex-col md:flex-row min-h-screen">
      
@@ -79,7 +86,7 @@ export default function Signup() {
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-              <form onSubmit = {handleSubmit} 
+              <form onSubmit = {handleSignUp} 
               className="space-y-6" action="#" method="POST">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-medium leading-6 text-gray-900">
@@ -213,3 +220,4 @@ export default function Signup() {
     </main>
   )
 }
+export default SignUp;
