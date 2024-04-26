@@ -26,13 +26,13 @@ const SignUp = () => {
         password
       );
       const id = userCredentials.user.uid;
-      await setDoc(doc(db, "user" ), {
+      await setDoc(doc(db, "user", id ), {
         email,
         firstName,
         lastName,
       }); 
       alert("You are signed up!")
-      router.push("/");
+      router.push('/dashboard');
       // window.location.href = "/";
     } 
     catch (error) {

@@ -10,12 +10,13 @@ const SignIn = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
 
     try {
-      await auth.signInWithEmailAndPassword(
+      await firebase.auth().signInWithEmailAndPassword(
         email,
         password
       );
@@ -23,6 +24,7 @@ const SignIn = () => {
       router.push('/dashboard')
     } catch (error) {
       console.error(error);
+      alert("Please try again!")
     }
   };
   return (
@@ -52,7 +54,9 @@ const SignIn = () => {
               <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                 Sign in to your account
               </h2>
+              <form onSubmit = {handleSignIn}></form>
             </div>
+            
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
               <form className="space-y-6" action="#" method="POST">
@@ -67,6 +71,7 @@ const SignIn = () => {
                       type="email"
                       autoComplete="email"
                       required
+                      onChange={(e) => setEmail(e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -90,6 +95,7 @@ const SignIn = () => {
                       type="password"
                       autoComplete="current-password"
                       required
+                       onChange={(e) => setPassword(e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>

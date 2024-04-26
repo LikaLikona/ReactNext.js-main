@@ -1,16 +1,19 @@
-"use client";
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+"use client"
+
 import { useState } from "react";
-import Weather from "../components/Weather";
-import FiveDays from "../components/FiveDays";
-import SunriseSunset from "../components/SunriseSunset";
-import WindSpeed from "../components/WindSpeed";
-import HourlyWeather from "../components/HourlyWeather";
-import FeelsLike from "../components/FeelsLike";
-import HumidityInfo from "../components/HumidityInfo";
-import VisibilityInfo from "../components/VisibilityInfo";
-import PressureInfo from "../components/PressureInfo";
-import RainInfo from "../components/RainInfo";
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Weather from "../../components/Weather";
+import FiveDays from "../../components/FiveDays";
+import SunriseSunset from "../../components/SunriseSunset";
+import WindSpeed from "../../components/WindSpeed";
+import HourlyWeather from "../../components/HourlyWeather";
+import FeelsLike from "../../components/FeelsLike";
+import HumidityInfo from "../../components/HumidityInfo";
+import VisibilityInfo from "../../components/VisibilityInfo";
+import PressureInfo from "../../components/PressureInfo";
+import RainInfo from "../../components/RainInfo";
+
 
 
 export default function Dashboard() {
@@ -65,7 +68,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-800 text-white p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-linear-gradient-800 text-white p-4">
       <main className="text-center flex-1 w-full">
         <h1 className="text-4xl font-bold mb-8 mt-4">
           Welcome to the Weather App!
@@ -76,7 +79,7 @@ export default function Dashboard() {
           <input
             type="text"
             placeholder="Enter city name"
-            className="p-4 mr-4 bg-gray-700 text-white rounded"
+            className="p-4 mr-4 bg-linear-gradient-700 text-white rounded"
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
