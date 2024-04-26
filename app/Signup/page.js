@@ -15,11 +15,15 @@ const SignUp = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
 
     try {
+      if (password.length < 6) {
+        throw new Error("Password must be at least 6 characters long.");
+      }
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -164,7 +168,7 @@ const SignUp = () => {
                 {/* Agreement Checkbox */}
                 <div className="flex gap-x-4 sm:col-span-2 items-center">
                     <div className="relative flex-shrink-0 w-6 h-6 mr-2 transition duration-200 ease-in">
-                        <input type="checkbox" id="toggle" name="toggle" className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 cursor-pointer" checked={isChecked} onChange={handleToggle} />
+                        <input type="checkbox" id="toggle" name="toggle" className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 cursor-pointer" required checked={isChecked} onChange={handleToggle} />
                         <label htmlFor="toggle"></label>
                     </div>
                     <label className="text-sm leading-6 text-gray-600">

@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image';
 import React, { useState } from "react";
-import { useRouter } from 'next/navigation'; // Используем useRouter из next/router
+import { useRouter } from 'next/navigation'; 
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -15,15 +15,15 @@ const SignIn = () => {
     e.preventDefault();
 
     try {
-      await signInWithEmailAndPassword(auth, email, password); // Вероятно, здесь должен быть вызов signInWithEmailAndPassword с передачей auth
-      router.push('/dashboard'); // Переходим на страницу "/dashboard" после успешного входа
+      await signInWithEmailAndPassword(auth, email, password); 
+      router.push('/dashboard'); 
     } catch (error) {
       console.error(error);
       alert("Please try again!");
     }
   };
   
-  // Обработчик для перехода на главную страницу при нажатии на "Sign in"
+  
   const handleGoToMainPage = () => {
     router.push('/');
   };
