@@ -18,7 +18,7 @@ const FeelsLike = ({ actualTemperature, feelsLikeTemperature }) => {
   return (
     <div className="bg-gray-900 p-8 rounded-lg mb-3">
       <h2 className="text-2xl font-bold mb-4">Feels Like</h2>
-      <p className="text-xl mb-2 font-bold">{feelsLikeTemperature}Â°C</p>
+      <p className="text-xl mb-2 font-bold">{feelsLikeTemperature}°C</p>
       <p className="text-lg">{description}</p>
     </div>
   );

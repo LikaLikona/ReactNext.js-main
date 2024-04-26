@@ -23,11 +23,6 @@ const SignIn = () => {
     }
   };
   
-  
-  const handleGoToMainPage = () => {
-    router.push('/');
-  };
-  
   return (
     <main className="flex flex-col md:flex-row min-h-screen">
      

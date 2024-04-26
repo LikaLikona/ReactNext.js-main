@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Weather from "../../components/Weather";
@@ -13,7 +13,7 @@ import HumidityInfo from "../../components/HumidityInfo";
 import VisibilityInfo from "../../components/VisibilityInfo";
 import PressureInfo from "../../components/PressureInfo";
 import RainInfo from "../../components/RainInfo";
-
+import Header from "../../components/layout/Header"
 
 
 export default function Dashboard() {
@@ -73,8 +73,6 @@ export default function Dashboard() {
         <h1 className="text-4xl font-bold mb-8 mt-4">
           Welcome to the Weather App!
         </h1>
-
-        
         <div className="flex items-center justify-center mb-8">
           <input
             type="text"
