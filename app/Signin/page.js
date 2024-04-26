@@ -20,7 +20,7 @@ const SignIn = () => {
         password
       );
       // window.location.href = "/dashboard"
-      router.push('/dashboard')
+      router.push('/home')
     } catch (error) {
       console.error(error);
     }

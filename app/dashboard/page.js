@@ -21,8 +21,8 @@ export default function Home() {
   const [errorAlert, setErrorAlert] = useState(null);
 
   const fetchWeatherData = async () => {
-    const apiKey = '4413bf0af2msh933218eea5ebc8cp15d4c6jsnd4163a4ac681';
-    const commonUrl = 'https://meteostat.p.rapidapi.com/stations/hourly?station=10637&start=2020-01-01&end=2020-01-01&tz=Europe%2FBerlin';
+    const apiKey = '18b48be778973a8963158ef8313293cc';
+    const commonUrl = 'https://api.openweathermap.org/data/2.5';
     const weatherUrl = `${commonUrl}/weather?q=${city}&appid=${apiKey}&units=metric`;
     const forecastUrl = `${commonUrl}/forecast?q=${city}&appid=${apiKey}&units=metric`;
 
