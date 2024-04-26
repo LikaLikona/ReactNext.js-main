@@ -1,32 +1,33 @@
 'use client'
-import Image from 'next/image'
+import Image from 'next/image';
 import React, { useState } from "react";
-import { auth, db } from '../firebaseConfig';
+import { useRouter } from 'next/navigation'; // Используем useRouter из next/router
+import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
-
 
 const SignIn = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  
 
   const handleSignIn = async (e) => {
     e.preventDefault();
 
     try {
-      await firebase.auth().signInWithEmailAndPassword(
-        email,
-        password
-      );
-      // window.location.href = "/dashboard"
-      router.push('/dashboard')
+      await signInWithEmailAndPassword(auth, email, password); // Вероятно, здесь должен быть вызов signInWithEmailAndPassword с передачей auth
+      router.push('/dashboard'); // Переходим на страницу "/dashboard" после успешного входа
     } catch (error) {
       console.error(error);
-      alert("Please try again!")
+      alert("Please try again!");
     }
   };
+  
+  // Обработчик для перехода на главную страницу при нажатии на "Sign in"
+  const handleGoToMainPage = () => {
+    router.push('/');
+  };
+  
   return (
     <main className="flex flex-col md:flex-row min-h-screen">
      
@@ -46,7 +47,6 @@ const SignIn = () => {
         </h1>
       </section>
 
-     
       <section className="flex-1 flex items-center justify-center md:item-start">
         <div className="p-6 md:p-12 rounded-lg shadow-xl w-full max-w-lg bg-white ">
           
@@ -104,6 +104,7 @@ const SignIn = () => {
                 <div>
                   <button
                     type="submit"
+                    onClick={handleSignIn}
                     className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     Sign in

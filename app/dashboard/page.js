@@ -79,7 +79,7 @@ export default function Dashboard() {
           <input
             type="text"
             placeholder="Enter city name"
-            className="p-4 mr-4 bg-linear-gradient-700 text-white rounded"
+            className="p-4 mr-4 bg-linear-gradient-700 text-black rounded"
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
